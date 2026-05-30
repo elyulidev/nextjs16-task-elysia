@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Proyecto
 
-## Getting Started
+Este repositorio contiene una aplicación Next.js (versión 16) creada como base para tareas y pruebas. Está organizada con la carpeta `src/` usando la nueva estructura de aplicación (`app/`).
 
-First, run the development server:
+**Requisitos**
+- Node.js 18+ (recomendado)
+- npm, pnpm o bun (según tu preferencia)
+
+**Instalación**
+1. Clona el repositorio:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repo-url>
+cd nextjs16-task-elysia
+```
+2. Instala dependencias:
+
+```bash
+npm install
+# o: pnpm install
+# o: bun install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Scripts útiles**
+- `npm run dev` — Inicia el servidor de desarrollo (Next dev).
+- `npm run build` — Compila la app para producción.
+- `npm start` — Inicia la versión de producción (después de `build`).
+- `npm run lint` — Ejecuta Biome para chequeos de lint.
+- `npm run format` — Formatea el código con Biome.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Abre http://localhost:3000 en tu navegador tras ejecutar `npm run dev`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Estructura principal**
+- `src/app/` — Rutas y layouts de la app (incluye `login`, `register`, y área protegida).
+- `src/components/` — Componentes UI reutilizables (`card`, `input`, `form`, etc.).
+- `src/utils/` — Utilidades y helpers (`parse-cookie.ts`, `validator.ts`, `refresh_tokens.ts`).
+- `src/proxy.ts` — Proxy / helpers para llamadas a APIs.
 
-## Learn More
+**Rutas importantes (ejemplos)**
+- `/` — Landing o página pública.
+- `/auth/login` — Formulario de login.
+- `/auth/register` — Registro de usuarios.
+- `/protected` — Zona protegida (requiere autenticación).
 
-To learn more about Next.js, take a look at the following resources:
+**Notas de desarrollo**
+- Este proyecto usa `next` v16 y React 19.
+- Linter y formateador configurados con Biome (`biome check`, `biome format`).
+- Tailwind y PostCSS están presentes en la configuración del proyecto.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Despliegue**
+Puedes desplegar en Vercel o en cualquier servicio que soporte aplicaciones Node/Next.js. Para Vercel, la configuración por defecto suele funcionar: conecta el repositorio y Vercel detectará Next.js.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Contribuir**
+1. Crea una rama feature/bugfix.
+2. Añade cambios y tests si aplica.
+3. Abre un PR con descripción clara.
 
-## Deploy on Vercel
+**Licencia**
+Revisa la licencia del proyecto o añádela si es necesario.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Archivos clave: consulta `src/` para ver componentes, rutas y utilidades.
+
+Si quieres, puedo: mejorar la documentación de una carpeta específica, añadir ejemplos de uso, o traducir el README al inglés.
