@@ -45,7 +45,7 @@ const fetchResource = async (
   headers?: Record<string, string>,
 ) => {
   try {
-    console.log(`${BASE_URL}/${endpoint}`);
+    console.log(`BASE_URL>>>>>${BASE_URL}/${endpoint}`);
 
     const response: Response = await fetch(`${BASE_URL}/${endpoint}`, {
       method,
@@ -186,7 +186,7 @@ export const createTask = async (
   }
 
   revalidatePath("/tasks");
-  return response;
+  return { ...previousState, errors: {}, data: response };
 };
 
 export const updateTask = async (
@@ -295,13 +295,21 @@ export const logout = async () => {
   // 1. Validar sesión
   const resProfile = await getProfile();
   if (resProfile?.errors) {
-    console.log("Error profile", resProfile.errors);
-    return;
+    redirect("/login");
   }
 
   // 2. Obtener token
   const cookieStore = await cookies();
+
+  //3. Eliminar refresh_token do servidor
+  await fetchResource("auth/logout", "POST", undefined, {
+    Cookie: `access_token=${cookieStore.get("access_token")?.value};refresh_token=${cookieStore.get("refresh_token")?.value}`,
+  });
+
+  //4. Eliminar refresh_token e access_token do navegador
   cookieStore.delete("access_token");
   cookieStore.delete("refresh_token");
+
+  //5. Enviar para a rota /login
   redirect("/login");
 };
